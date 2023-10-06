@@ -6,20 +6,62 @@ from starlette.responses import JSONResponse
 from joblib import load
 from prophet.serialize import model_from_json
 
-app = FastAPI()
 
-lr_pipe = load('../models/lr_pipeline.joblib')
+description = """
 
-cat = load('../models/CatBoost-nocalendar.joblib')
+# Sales Forecasting API
 
-with open('../models/prophet_model.json', 'r') as fin:
+Sales Forecast API helps you to do some awesome stuff.
+
+## Usage
+
+The API deploys 2 models:
+
+* A predictive model that uses Catboost to predict the sales revenue for a given item in a specific store on a given date.
+* A forecast model that uses Prophet to forecast the total sales revenue across all stores and items for the next 7 days.
+
+## Endpoints
+
+* ‘/’ (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/
+
+* ‘/health/’ (GET): Returning status code 200 with a string with a welcome message of your choice
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/
+
+* ‘/sales/national/’ (GET): Returning next 7 days sales volume forecast for an input date (date)
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=yyyy-mm-dd
+
+* ‘/sales/stores/items/’ (GET): Returning predicted sales volume for an input item, store and date (item_id, store_id, date)
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=item_id&store_id=store_id&date=yyyy-mm-dd
+
+The input arguments need to be in the correct case and date format. The documentation for the application can be reviewed on:
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/docs/
+
+
+## Link to Github Repo
+
+https://github.com/rushman95/timeseries-sales-forecast
+
+"""
+
+# Initialize app
+app = FastAPI(
+    title="Advanced ML AT2",
+    description=description,
+    summary="The Ultimate revenue forecasting solution",
+    version="0.0.1")
+
+# Load models
+cat = load('../models/catboost.joblib')
+
+with open('../models/prophet.json', 'r') as fin:
     prophet_pipe = model_from_json(fin.read())  # Save model
 
 
 # Solution:
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return description
 
 @app.get('/health', status_code=200)
 def healthcheck():
