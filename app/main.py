@@ -1,9 +1,10 @@
 import os
 import pandas as pd
+from joblib import load
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from datetime import date, datetime
 from starlette.responses import JSONResponse
-from joblib import load
 from prophet.serialize import model_from_json
 
 
@@ -23,16 +24,24 @@ The API deploys 2 models:
 ## Endpoints
 
 * ‘/’ (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project
+
 https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/
 
+
 * ‘/health/’ (GET): Returning status code 200 with a string with a welcome message of your choice
+
 https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/
 
-* ‘/sales/national/’ (GET): Returning next 7 days sales volume forecast for an input date (date)
-https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=yyyy-mm-dd
 
-* ‘/sales/stores/items/’ (GET): Returning predicted sales volume for an input item, store and date (item_id, store_id, date)
-https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=item_id&store_id=store_id&date=yyyy-mm-dd
+* ‘/sales/national/’ (GET): Returning next 7 days sales volume forecast for an input date (DATE)
+
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD
+
+
+* ‘/sales/stores/items/’ (GET): Returning predicted sales volume for an input item, store and date (ITEM_ID, STORE_ID, DATE)
+
+https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD
+
 
 The input arguments need to be in the correct case and date format. The documentation for the application can be reviewed on:
 https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/docs/
@@ -61,7 +70,59 @@ with open('../models/prophet.json', 'r') as fin:
 # Solution:
 @app.get("/")
 def read_root():
-    return description
+
+    html_content = """
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sales Forecasting API</title>
+    </head>
+    <body>
+        <h1>Sales Forecasting API</h1>
+        
+        <p>Sales Forecast API helps you to do some awesome stuff.</p>
+
+        <h2>Usage</h2>
+
+        <p>The API deploys 2 models:</p>
+
+        <ul>
+            <li>
+                A predictive model that uses Catboost to predict the sales revenue for a given item in a specific store on a given date.
+            </li>
+            <li>
+                A forecast model that uses Prophet to forecast the total sales revenue across all stores and items for the next 7 days.
+            </li>
+        </ul>
+
+        <h2>Endpoints</h2>
+
+        <ul>
+            <li>
+                <code>/</code> (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project. <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/">Link</a>
+            </li>
+            <li>
+                <code>/health/</code> (GET): Returning status code 200 with a string with a welcome message of your choice. <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/">Link</a>
+            </li>
+            <li>
+                <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD">Link</a>
+            </li>
+            <li>
+                <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD">Link</a>
+            </li>
+        </ul>
+
+        <p>The input arguments need to be in the correct case and date format. The documentation for the application can be reviewed on: <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/docs/">Link to Docs</a></p>
+
+        <h2>Link to Github Repo</h2>
+        <p><a href="https://github.com/rushman95/timeseries-sales-forecast">GitHub Repo</a></p>
+    </body>
+    </html>
+
+    """
+    return HTMLResponse(content=html_content, status_code=200)
 
 @app.get('/health', status_code=200)
 def healthcheck():
