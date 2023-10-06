@@ -104,17 +104,17 @@ def read_root():
                 <code>/</code> (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project. 
             </li>
                 <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/</code>
-
+            <br>
             <li>
                 <code>/health/</code> (GET): Returning status code 200 with a string with a welcome message. 
             </li>
                 <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/</code>
-
+            <br>
             <li>
                 <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). 
             </li>
                 <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD"</code>
-
+            <br>
             <li>
                 <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). 
             </li>
