@@ -113,7 +113,7 @@ def read_root():
             <li>
                 <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). 
             </li>
-                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD"</code>
+                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD</code>
             <br>
             <li>
                 <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). 
