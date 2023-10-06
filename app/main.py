@@ -28,7 +28,7 @@ The API deploys 2 models:
 https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/
 
 
-* ‘/health/’ (GET): Returning status code 200 with a string with a welcome message of your choice
+* ‘/health/’ (GET): Returning status code 200 with a string with a welcome message
 
 https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/
 
@@ -101,16 +101,28 @@ def read_root():
 
         <ul>
             <li>
-                <code>/</code> (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project. <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/">Link</a>
+                <code>/</code> (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project. 
             </li>
             <li>
-                <code>/health/</code> (GET): Returning status code 200 with a string with a welcome message of your choice. <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/">Link</a>
+                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/</i>
             </li>
             <li>
-                <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD">Link</a>
+                <code>/health/</code> (GET): Returning status code 200 with a string with a welcome message. 
             </li>
             <li>
-                <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD">Link</a>
+                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/</i>
+            </li>
+            <li>
+                <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). 
+            </li>
+            <li>
+                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD"</i>
+            </li>            
+            <li>
+                <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). 
+            </li>
+                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD</i>
+            <li>
             </li>
         </ul>
 
