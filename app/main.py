@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-import xgboost
+#import xgboost
 from fastapi import FastAPI, HTTPException
 from datetime import date, datetime
 from starlette.responses import JSONResponse
