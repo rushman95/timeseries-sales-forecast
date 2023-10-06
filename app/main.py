@@ -12,7 +12,7 @@ lr_pipe = load('../models/lr_pipeline.joblib')
 
 cat = load('../models/CatBoost-nocalendar.joblib')
 
-with open('../models/serialized_model.json', 'r') as fin:
+with open('../models/prophet_model.json', 'r') as fin:
     prophet_pipe = model_from_json(fin.read())  # Save model
 
 
@@ -30,6 +30,7 @@ def format_features(
     store_id: str,
     d: date
     ):
+
     # Generating date and category features
     return {
         'item_id': [item_id],
