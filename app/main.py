@@ -103,27 +103,23 @@ def read_root():
             <li>
                 <code>/</code> (GET): Displaying a brief description of the project objectives, list of endpoints, expected input parameters and output format of the model, link to the Github repo related to this project. 
             </li>
-            <li>
-                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/</i>
-            </li>
+                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/</code>
+
             <li>
                 <code>/health/</code> (GET): Returning status code 200 with a string with a welcome message. 
             </li>
-            <li>
-                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/</i>
-            </li>
+                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/health/</code>
+
             <li>
                 <code>/sales/national/</code> (GET): Returning next 7 days sales volume forecast for an input date (DATE). 
             </li>
-            <li>
-                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD"</i>
-            </li>            
+                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/national?date=YYYY-MM-DD"</code>
+
             <li>
                 <code>/sales/stores/items/</code> (GET): Returning predicted sales volume for an input item, store, and date (ITEM_ID, STORE_ID, DATE). 
             </li>
-                <i>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD</i>
-            <li>
-            </li>
+                <code>https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/sales/stores/item?item_id=ITEM_ID&store_id=STORE_ID&date=YYYY-MM-DD</code>
+
         </ul>
 
         <p>The input arguments need to be in the correct case and date format. The documentation for the application can be reviewed on: <a href="https://quiet-savannah-28493-e3545a2f3e86.herokuapp.com/docs/">Link to Docs</a></p>
